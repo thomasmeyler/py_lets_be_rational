@@ -36,3 +36,19 @@ from py_lets_be_rational.lets_be_rational import normalised_implied_volatility_f
 from py_lets_be_rational.lets_be_rational import normalised_implied_volatility_from_a_transformed_rational_guess_with_limited_iterations
 from py_lets_be_rational.lets_be_rational import normalised_vega
 from py_lets_be_rational.normaldistribution import norm_cdf
+
+from py_lets_be_rational.constants import *
+
+# Asian option functionality (new)
+from py_lets_be_rational.asian import (
+    turnbull_wakeman,
+    turnbull_wakeman_call,
+    turnbull_wakeman_put,
+    turnbull_wakeman_with_partial_averaging,
+    turnbull_wakeman_vectorized,
+    turnbull_wakeman_implied_volatility,
+    asian_option_price,
+    asian_calendar_period
+)
+
+__version__ = "1.1.0"  # Increment version for new functionality
