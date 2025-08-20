@@ -762,37 +762,37 @@ def normalised_black(x, s, q):
 
 
 # noinspection PyPep8Naming
-# @maybe_jit(cache=True, nopython=True)
-# def black(F, K, sigma, T, q):
-#     """
-
-#     :param F:
-#     :type F: float
-#     :param K:
-#     :type K: float
-#     :param sigma:
-#     :type sigma: float
-#     :param T:
-#     :type T: float
-#     :param q: q=±1
-#     :type q: float
-
-#     :return:
-#     :rtype: float
-
-#     """
-#     intrinsic = fabs(max((K - F if q < 0 else F - K), 0.0))
-#     # Map in-the-money to out-of-the-money
-#     if q * (F - K) > 0:
-#         return intrinsic + black(F, K, sigma, T, -q)
-#     return max(intrinsic, (sqrt(F) * sqrt(K)) * normalised_black(log(F / K), sigma * sqrt(T), q))
-
 @maybe_jit(cache=True, nopython=True)
-def black(F, K, sigma, T, q, r=0.0):  # Add r parameter with default 0
+def black(F, K, sigma, T, q):
+    """
+
+    :param F:
+    :type F: float
+    :param K:
+    :type K: float
+    :param sigma:
+    :type sigma: float
+    :param T:
+    :type T: float
+    :param q: q=±1
+    :type q: float
+
+    :return:
+    :rtype: float
+
+    """
     intrinsic = fabs(max((K - F if q < 0 else F - K), 0.0))
     # Map in-the-money to out-of-the-money
     if q * (F - K) > 0:
-        return intrinsic + black(F, K, sigma, T, -q, r)  # Pass r through recursion
+        return intrinsic + black(F, K, sigma, T, -q)
+    return max(intrinsic, (sqrt(F) * sqrt(K)) * normalised_black(log(F / K), sigma * sqrt(T), q))
+
+# @maybe_jit(cache=True, nopython=True)
+# def black(F, K, sigma, T, q, r=0.0):  # Add r parameter with default 0
+#     intrinsic = fabs(max((K - F if q < 0 else F - K), 0.0))
+#     # Map in-the-money to out-of-the-money
+#     if q * (F - K) > 0:
+#         return intrinsic + black(F, K, sigma, T, -q, r)  # Pass r through recursion
     
-    forward_value = max(intrinsic, (sqrt(F) * sqrt(K)) * normalised_black(log(F / K), sigma * sqrt(T), q))
-    return forward_value * exp(-r * T)  # Add discount factor
+#     forward_value = max(intrinsic, (sqrt(F) * sqrt(K)) * normalised_black(log(F / K), sigma * sqrt(T), q))
+#     return forward_value * exp(-r * T)  # Add discount factor

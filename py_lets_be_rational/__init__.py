@@ -39,7 +39,7 @@ from py_lets_be_rational.normaldistribution import norm_cdf
 
 from py_lets_be_rational.constants import *
 
-# Asian option functionality (new)
+# Asian option functionality
 from py_lets_be_rational.asian import (
     turnbull_wakeman,
     turnbull_wakeman_call,
@@ -51,4 +51,13 @@ from py_lets_be_rational.asian import (
     asian_calendar_period
 )
 
+# American option functionality
+from py_lets_be_rational.american import (
+    AmericanBlack76Pricer,
+    american_call,
+    american_put,
+    american_option,
+    american_option_greeks,
+    AmericanOptionGreeks
+)
 __version__ = "1.1.0"  # Increment version for new functionality
