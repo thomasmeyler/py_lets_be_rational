@@ -52,12 +52,9 @@ from py_lets_be_rational.asian import (
 )
 
 # American option functionality
-from py_lets_be_rational.american import (
-    AmericanBlack76Pricer,
-    american_call,
-    american_put,
-    american_option,
-    american_option_greeks,
-    AmericanOptionGreeks
+
+from py_lets_be_rational.whaley import (
+    barone_adesi_whaley
 )
+
 __version__ = "1.1.0"  # Increment version for new functionality
